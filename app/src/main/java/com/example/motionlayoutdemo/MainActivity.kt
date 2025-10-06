@@ -37,115 +37,16 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
+import com.example.motionlayoutdemo.compose.CollapsingHeaderList
 import com.example.motionlayoutdemo.ui.theme.MotionLayoutDemoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-                Column {
-                    var progress by remember {
-                        mutableFloatStateOf(0f)
-                    }
-                    ProfileHeader(progress = progress)
-                    Spacer(modifier = Modifier.height(32.dp))
-                    Slider(
-                        value = progress,
-                        onValueChange = {
-                            progress = it
-                        },
-                        modifier = Modifier.padding(horizontal = 32.dp)
-                    )
-                }
-
+            Column {
+                CollapsingHeaderList()
+            }
         }
-    }
-}
-
-@OptIn(ExperimentalMotionApi::class)
-@Composable
-fun ProfileHeader(progress: Float) {
-    val context = LocalContext.current
-    val motionScene = remember {
-        context.resources
-            .openRawResource(R.raw.motion_scene)
-            .readBytes()
-            .decodeToString()
-    }
-    MotionLayout(
-        motionScene = MotionScene(content = motionScene),
-        progress = progress,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        val properties = motionProperties(id = "profile_pic")
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray)
-                .layoutId("box")
-        )
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
-            contentDescription = null,
-            modifier = Modifier
-                .clip(CircleShape)
-                .border(
-                    width = 2.dp,
-                    color = properties.value.color("background"),
-                    shape = CircleShape
-                )
-                .layoutId("profile_pic")
-        )
-        Text(
-            text = "Sanjoy Paul",
-            fontSize = 24.sp,
-            modifier = Modifier.layoutId("username"),
-            color = properties.value.color("background")
-        )
-    }
-}
-
-@Composable
-fun SimpleMotionExample() {
-    val context = LocalContext.current
-    // Load MotionScene from JSON
-    val motionScene = remember {
-        context.resources
-            .openRawResource(R.raw.motion_scene_demo)
-            .readBytes()
-            .decodeToString()
-    }
-
-    // Slider progress state
-    var progress by remember { mutableStateOf(0f) }
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top
-    ) {
-        // MotionLayout animates based on progress
-        MotionLayout(
-            motionScene = MotionScene(content = motionScene),
-            progress = progress,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .background(Color.LightGray)
-        ) {
-            Box(
-                modifier = Modifier
-                    .layoutId("box")
-                    .background(Color.Red)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Slider to control progress manually
-        Slider(
-            value = progress,
-            onValueChange = { progress = it },
-            modifier = Modifier.padding(horizontal = 32.dp)
-        )
     }
 }

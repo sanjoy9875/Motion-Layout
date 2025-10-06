@@ -1,0 +1,51 @@
+{
+  "ConstraintSets": {
+    "start": {
+      "profile_pic": {
+        "width": 120,
+        "height": 120,
+        "start": ["parent","start"],
+        "end": ["parent","end"],
+        "top": ["parent","top",16]
+      },
+      "username": {
+        "top": ["profile_pic","bottom",12],
+        "start": ["parent","start"],
+        "end": ["parent","end"]
+      },
+      "box": {
+        "height": 200,
+        "width": "spread",
+        "top": ["parent","top"],
+        "start": ["parent","start"]
+      }
+    },
+
+    "end": {
+      "profile_pic": {
+        "width": 50,
+        "height": 50,
+        "start": ["parent","start",16],
+        "top": ["parent","top",16]
+      },
+      "username": {
+        "top": ["profile_pic","top"],
+        "bottom": ["profile_pic","bottom"],
+        "start": ["profile_pic","end",8]
+      },
+      "box": {
+        "height": 20,
+        "width": "spread",
+        "top": ["parent","top"],
+        "start": ["parent","start"]
+      }
+    }
+  },
+
+  "Transitions": {
+    "default": {
+      "from": "start",
+      "to": "end"
+    }
+  }
+}
