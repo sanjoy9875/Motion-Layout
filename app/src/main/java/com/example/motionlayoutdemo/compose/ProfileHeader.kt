@@ -31,7 +31,7 @@ import com.example.motionlayoutdemo.R
 
 @OptIn(ExperimentalMotionApi::class)
 @Composable
-fun ProfileHeader(progress: Float) {
+fun ProfileHeader() {
 
     var progress by remember {
         mutableFloatStateOf(0f)
@@ -57,7 +57,7 @@ fun ProfileHeader(progress: Float) {
                 .layoutId("box")
         )
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.profile_pic),
             contentDescription = null,
             modifier = Modifier
                 .clip(CircleShape)
