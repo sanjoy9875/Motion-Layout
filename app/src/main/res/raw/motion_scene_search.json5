@@ -1,0 +1,55 @@
+{
+  ConstraintSets: {
+    start: {
+      backIcon: {
+        start: ['parent', 'start', 16],
+        centerVertically: 'parent'
+      },
+      titleText: {
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        centerVertically: 'parent',
+        alpha: 1
+      },
+      searchIcon: {
+        end: ['parent', 'end', 16],
+        centerVertically: 'parent',
+        alpha: 1
+      },
+      searchField: {
+        width: 0,
+        start: ['parent', 'end'],
+        end: ['parent', 'end'],
+        centerVertically: 'parent',
+        alpha: 1
+      }
+    },
+    end: {
+      backIcon: {
+        start: ['parent', 'start', 8],
+        centerVertically: 'parent'
+      },
+      titleText: {
+        alpha: 0
+      },
+      searchIcon: {
+        alpha: 0
+      },
+      searchField: {
+        start: ['backIcon', 'end', 8],
+        end: ['parent', 'end', 16],
+        centerVertically: 'parent',
+        alpha: 1,
+        width: 'spread'
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      pathMotionArc: 'startHorizontal',
+      duration: 400
+    }
+  }
+}
